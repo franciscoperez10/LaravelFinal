@@ -8,13 +8,13 @@
     <title>CRM de Bandas de Música</title>
 
     <!-- CSS -->
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 
     <!-- JS -->
     <script src="{{ asset('assets/bootstrap.js') }}" defer></script>
-    <script src="{{ asset('js/script.js') }}" defer></script>
+
 </head>
 
 <body>
