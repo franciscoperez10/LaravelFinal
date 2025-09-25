@@ -10,8 +10,8 @@
             <input type="text" class="form-control" id="name" name="name" required>
         </div>
         <div class="mb-3">
-            <label for="photo" class="form-label">Photo URL</label>
-            <input type="url" class="form-control" id="photo" name="photo" required>
+        <label for="cover_image" class="form-label">Cover Image</label>
+        <input type="file" class="form-control" id="cover_image" name="cover_image" required>
         </div>
 
         <button type="submit" class="btn btn-primary">Create Band</button>

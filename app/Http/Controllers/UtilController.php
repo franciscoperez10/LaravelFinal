@@ -8,15 +8,14 @@ class UtilController extends Controller
 {
     public function index() {
 
-        // $myName = $this->getUser();
-
+        $myName = 'Francisco Perez';
         $loginUser = [
             'name' => 'Francisco Perez',
             'email' => 'francisco@gmail.com',
             'phone' => '1234567890'
         ];
 
-        // return view('utils.homepage', compact('myName', 'loginUser',));
+        return view('utils.homepage', compact('myName', 'loginUser',));
     }
 
 }

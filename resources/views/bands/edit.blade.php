@@ -11,8 +11,8 @@
             <input type="text" class="form-control" id="name" name="name" value="{{ $band->name }}" required>
         </div>
         <div class="mb-3">
-            <label for="photo" class="form-label">Photo URL</label>
-            <input type="url" class="form-control" id="photo" name="photo" value="{{ $band->photo }}" required>
+            <label for="photo" class="form-label">Photo</label>
+            <input type="file" class="form-control" id="photo" name="photo" value="{{ $band->photo }}" required>
         </div>
 
         <button type="submit" class="btn btn-primary">Update Band</button>

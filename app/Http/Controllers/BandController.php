@@ -10,7 +10,15 @@ class BandController extends Controller
     public function index()
     {
         // Lógica para listar todas as bandas
-        $bands = DB:: table('bands')->get();
+        $bands = DB:: table('bands')
+        ->leftJoin('albums', 'bands.id', '=', 'albums.band_id')
+        ->select('bands.*', DB::raw('COUNT(albums.id) as number_of_albums'))
+        ->groupBy('bands.id')
+        ->get();
+
+        if ($bands->isEmpty()) {
+            return view('bands.index', ['bands' => $bands])->with('info', 'No bands found.');
+        }
         return view('bands.index', ['bands' => $bands
         ]);
     }
@@ -32,7 +40,10 @@ class BandController extends Controller
        DB:: table('bands')->insert([
         'name' => $request->name,
         'photo' => $request->photo,
-         ]);
+        'number_of_albums' => 0,
+        'created_at' => now(),
+        'updated_at' => now(),
+        ]);
 
         return redirect()->route('bands.index')
                          ->with('success', 'Band created successfully.');
@@ -42,7 +53,8 @@ class BandController extends Controller
     {
         // Lógica para mostrar uma banda específica
         $band = DB:: table('bands')->where('id', $id)->first();
-        return view('bands.show', compact('band'));
+        $albums = DB:: table('albums')->where('band_id', $id)->get();
+        return view('bands.show', compact('band', 'albums'));
     }
 
     public function edit($id)
@@ -72,7 +84,7 @@ class BandController extends Controller
     public function destroy($id)
     {
         // Lógica para apagar uma banda específica
-        BD:: table('bands')->where('id', $id)->delete();
+        DB:: table('bands')->where('id', $id)->delete();
 
         return redirect()->route('bands.index')
                          ->with('success', 'Band deleted successfully.');
