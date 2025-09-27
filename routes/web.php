@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BandController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\UtilController;
 use App\Http\Controllers\AlbumController;
 
@@ -14,10 +15,14 @@ Route::get('/home', [UtilController::class, 'index'])->name('home_name');
 Route::get('/add-users', [UserController::class, 'createUser'])->name('users.add');
 Route::post('/store-user', [UserController::class, 'storeUser'])->name('users.store');
 
-Route::middleware(['auth'])->group(function() {
-    Route::get('dashboard', function() {
-        return view('dashboard.dashboard');
-    })->name('dashboard');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::resource('bands', BandController::class);
+    Route::resource('albums', AlbumController::class);
+
+    Route::get('/add-users', [UserController::class, 'createUser'])->name('users.add');
+    Route::post('/store-user', [UserController::class, 'storeUser'])->name('users.store');
 });
 
 
@@ -36,7 +41,3 @@ Route::get('albums/{id}', [AlbumController::class, 'show'])->name   ('albums.sho
 Route::get('albums/{id}/edit', [AlbumController::class, 'edit'])->name('albums.edit');
 Route::put('albums/{id}', [AlbumController::class, 'update'])->name('albums.update');
 Route::delete('albums/{id}', [AlbumController::class, 'destroy'])->name('albums.destroy');
-
-Route::fallback(function() {
-    return '<h1> Ups, the page you are looking for does not exist. </h1>';
-});

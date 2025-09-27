@@ -60,32 +60,33 @@
                     Log in
                 </a>
 
-                @if (Route::has('users.add'))
-                    <a href="{{ route('users.add') }}"
-                        class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
+                @if (Route::has('register'))
+                    <a href="{{ route('register') }}"
+                        class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] rounded-sm text-sm leading-normal">
                         Register
                     </a>
                 @endif
+
             @endauth
         </nav>
     @endif
     </nav>
 
-<div class="container">
-    @if (session('success'))
-        <div class="alert alert-success mt-3">
-            {{ session('success') }}
-        </div>
-    @endif
+    <div class="container">
+        @if (session('success'))
+            <div class="alert alert-success mt-3">
+                {{ session('success') }}
+            </div>
+        @endif
 
-    @if (session('error'))
-        <div class="alert alert-danger mt-3">
-            {{ session('error') }}
-        </div>
-    @endif
+        @if (session('error'))
+            <div class="alert alert-danger mt-3">
+                {{ session('error') }}
+            </div>
+        @endif
 
-    @yield('content')
-</div>
+        @yield('content')
+    </div>
 
 </body>
 

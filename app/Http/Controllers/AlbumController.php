@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\DB;
 
 class AlbumController extends Controller
 {
+    protected function allowOnlyAdmin()
+    {
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('albums.index')->with('error', 'Access denied. Admins only.');
+        }
+    }
+
     public function index()
     {
         // Lógica para listar todos os álbuns
@@ -21,6 +28,13 @@ class AlbumController extends Controller
 
     public function create()
     {
+
+        $response = $this->allowOnlyAdmin();
+        if ($response) {
+            return $response;
+        }
+        // Lógica para mostrar o formulário de criação de álbum
+
     $bands = Band::get();
     return view('albums.create', compact('bands'));
     }

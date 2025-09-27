@@ -7,8 +7,20 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
+    protected function allowOnlyAdmin()
+    {
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('home_name')->with('error', 'Access denied. Admins only.');
+        }
+    }
+
     public function createUsers()
     {
+        $response = $this->allowOnlyAdmin();
+        if ($response) {
+            return $response;
+        }
         return view('users.addUsers');
     }
 
