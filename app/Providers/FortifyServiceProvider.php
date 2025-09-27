@@ -33,10 +33,10 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::loginView(function() { return view('auth.login'); });
         Fortify::registerView(function() { return view('auth.register'); });
         Fortify::createUsersUsing(CreateNewUser::class);
+        Fortify::requestPasswordResetLinkView(function () {return view('auth.forgot_password');});
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
-        // Fortify::logoutResponseUsing(function (Request $request) { return redirect('/home'); });
         Fortify::redirectUserForTwoFactorAuthenticationUsing(RedirectIfTwoFactorAuthenticatable::class);
 
         RateLimiter::for('login', function (Request $request) {

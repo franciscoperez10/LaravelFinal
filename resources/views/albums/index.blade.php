@@ -15,6 +15,7 @@
             <table class="table table-striped table-bordered align-middle">
                 <thead>
                     <tr>
+                        <th>Band</th>
                         <th>Name</th>
                         <th>Image</th>
                         <th>Release Date</th>
@@ -25,6 +26,7 @@
                 <tbody>
                     @foreach ($albums as $album)
                         <tr>
+                            <td>{{ $album->band_name }}</td>
                             <td>{{ $album->name }}</td>
                             <td>
                                 @if ($album->image)

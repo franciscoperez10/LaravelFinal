@@ -7,12 +7,13 @@ use Illuminate\Support\Facades\DB;
 
 class BandController extends Controller
 {
-    protected function allowOnlyAdmin()
-    {
-        if (auth()->user()->role !== 'admin') {
-            return redirect()->route('bands.index')->with('error', 'Access denied. Admins only.');
-        }
-    }
+
+    // protected function allowOnlyAdmin()
+    // {
+    //     if (auth()->user()->role !== 'admin') {
+    //         return redirect()->route('home_name')->with('error', 'Access denied. Admins only.');
+    //     }
+    // }
 
     public function index()
     {
@@ -33,10 +34,10 @@ class BandController extends Controller
     public function create()
     {
 
-        $response = $this->allowOnlyAdmin();
-        if ($response) {
-            return $response;
-        }
+        // $response = $this->allowOnlyAdmin();
+        // if ($response) {
+        //     return $response;
+        // }
         // Lógica para mostrar o formulário de criação de banda
         return view('bands.create');
     }

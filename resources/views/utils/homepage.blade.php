@@ -9,3 +9,5 @@
     <li><a href= "{{ route('bands.index') }}">Bands</a></li>
 </ul>
 
+<p> Copyright: Francisco Perez, September 2025 </p>
+
